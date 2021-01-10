@@ -9,7 +9,7 @@ state={
   intents:[]
 } ;
 componentDidMount(){
-  fetch("http://localhost:5000/")
+  fetch("https://peaceful-dawn-89366.herokuapp.com/")
   .then(res=>res.json())
   .then(res=>this.setState({intents:res}))
 }
