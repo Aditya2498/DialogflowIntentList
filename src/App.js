@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import {Cardlist} from './Cardlist.jsx';
+import {Container} from 'react-bootstrap';
+import React ,{Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component{
+
+state={
+  intents:[]
+} ;
+componentDidMount(){
+  fetch("http://localhost:5000/")
+  .then(res=>res.json())
+  .then(res=>this.setState({intents:res}))
+}
+ render(){
+  
+    return (
+      <Container style={{marginTop:'2rem',fontSize:'1rem',marginBottom:'2rem'}}>
+         <div style= {{display:'flex'}}>
+       
+       <span>
+       <h1>List of intents</h1> 
+        <Cardlist intents={this.state.intents}/>
+       </span>
+       
+      </div>
+      </Container>
+
+     
+    
+    )}
+  
 }
 
-export default App;
+
